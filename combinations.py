@@ -1,4 +1,4 @@
-def combinations(index, choices, number, selection):
+def combinations_inner(index, choices, number, selection):
     """ give index as zero, a list, number of selections and
     an empty list to get the combinations """
     if number > len(choices) or number < 0:
@@ -12,11 +12,12 @@ def combinations(index, choices, number, selection):
     while start < end:
         selection.append(choices[start])
         start+=1
-        combinations(start, choices, number, selection)
+        combinations_inner(start, choices, number, selection)
         selection.pop()
 
-
+def combinations(choices, number):
+    combinations_inner(0,choices, number,[])
 
 
 if __name__ == '__main__':
-    combinations(0,[1,2,3,4,5,6,7],3,[])
+    combinations([1,2,3,4,5,6,7],4)
